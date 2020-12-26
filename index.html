@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+	<link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<title>CSE TIME TABLE</title>
+</head>
+<body>
+   <div>
+   	  <div id="head">
+   	  		<span>WELCOME TO CSE TIME TABLE</span>
+   	  </div>
+   	  <div id="real">
+              <div id="section" style="
+    text-align: center;
+    position: relative;
+    /* padding: 14px; */
+    bottom: -109px;
+">
+               <select name="sections" id="sections" style="
+    padding: 15px 54px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4c78af;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+">
+               <option value="CSE-1">CSE-1</option>
+               <option value="CSE-2">CSE-2</option>
+               <option value="CSE-3">CSE-3</option>
+               <option value="CSE-4">CSE-4</option>
+               </select>
+            </div>
+   	        <div class="text-center">
+               <button type="submit" class="button" id="mybtn" >Today Classes</button>
+               </div>
+               <!-- The Modal -->
+               <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+               <div class="modal-content">
+                     <span class="close">&times;</span>
+                     <p id="demo"></p>
+                     <div id="heading">
+                        <ul style="
+    list-style-type: none;
+    display: flex;
+    font-size: 21px;
+    text-decoration: underline;
+    color: blue;
+">
+                           <li style="
+    margin-right: 47px;
+">Subject</li>
+                           <li>Timings</li>
+                        </ul>
+                     </div>
+                     <ul style="
+    list-style-type: none;
+    display: flex;
+    font-size: 17px;
+    /* text-decoration: underline; */
+    /* color: blue; */
+">
+                        <li id="sub1" style="
+    margin-right: 73px;
+"></li>
+                        <li id="tim1"></li>
+                     </ul>
+                     <br>
+                     <ul style="
+    list-style-type: none;
+    display: flex;
+    font-size: 17px;
+    /* text-decoration: underline; */
+    /* color: blue; */
+">
+                        <li id="sub2" style="
+    margin-right:74px;
+"></li>
+                        <li id="tim2"></li>
+                     </ul>
+                     <br>
+                     <ul style="list-style-type: none;list-style-type: none;display: flex;font-size: 17px;/* text-decoration: underline; *//* color: blue; */">
+                        <li id="sub3" style="
+    margin-right: 67px;
+"></li>
+                        <li id="tim3"></li>
+                     </ul>
+                </div>
+               </div>
+   	  </div>
+   	  <div id="footer"><span>@chsk_kishore</span></div>
+   </div>
+<script type="text/javascript">
+   // Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("mybtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+  var d = new Date();
+  var n = d.getDay();
+  var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+  var subjects=new Array();
+  var timings=new Array();
+  var e = document.getElementById("sections");
+  var strUser = e.value;
+  document.getElementById("demo").innerHTML =days[n]+"-"+strUser;
+  console.log(strUser);
+  var ids=[["sub1","tim1"],["sub2","tim2"],["sub3","tim3"]];
+  if(strUser=="CSE-1" || strUser=="CSE-2"){
+  document.getElementById("sub3").innerHTML="";
+  document.getElementById("tim3").innerHTML="";
+  if(n==1)
+  {
+   subjects.push("DAA");
+    subjects.push("OOPS")
+    timings.push("10.00 AM - 12.30 PM");
+    timings.push("3.00 PM - 4.00 PM");
+  }
+  if(n==2)
+ {
+    subjects.push("OOPS");
+    subjects.push("P&S")
+    timings.push("10.00 AM - 12.30 PM");
+    timings.push("3.00 PM - 4.00 PM");
+ }
+ if(n==3)
+ {
+  subjects.push("DLD");
+    subjects.push("DAA")
+    timings.push("10.00 AM - 12.30 PM");
+    timings.push("3.00 PM - 4.00 PM"); 
+ }
+  if(n==4)
+  {
+    subjects.push("DLD");
+    subjects.push("DAA");
+    subjects.push("MEFA");
+    timings.push("10.00 AM - 11.00 AM");
+    timings.push("3.00 PM - 4.00 PM");
+    timings.push("4.30 PM - 5.30 PM")
+  }
+  if(n==5)
+{
+    subjects.push("P&S");
+    subjects.push("MEFA")
+    timings.push("10.00 AM - 12.30 PM");
+    timings.push("4.30 PM - 5.30 PM");
+}
+if(n==6)
+{
+    subjects.push("OOPS");
+    subjects.push("P&S");
+    subjects.push("MEFA");
+    timings.push("10.00 AM - 11.00 PM");
+    timings.push("11.30 AM - 12.30 PM");
+    timings.push("4.30 PM - 5.30 PM")
+}
+for(var i in subjects)
+{
+  document.getElementById(ids[i][0]).innerHTML =subjects[i];
+  document.getElementById(ids[i][1]).innerHTML=timings[i];
+}
+
+}
+if(strUser=="CSE-3"){
+   document.getElementById("sub3").innerHTML="";
+  document.getElementById("tim3").innerHTML="";
+    if(n==1){
+    subjects.push("DLD");
+    subjects.push("P&S");
+    subjects.push("MEFA");
+    timings.push("10.00 AM - 12.30 PM");
+    timings.push("3.00 PM - 4.00 PM");
+    timings.push("4.30 PM - 5.30 PM")
+  }
+  if(n==2)
+  {
+   subjects.push("P&S");
+    subjects.push("MEFA")
+    timings.push("10.00 AM - 12.30 PM");
+    timings.push("4.30 PM - 5.30 PM");
+  }
+  if(n==3)
+ {
+    subjects.push("DAA");
+    subjects.push("OOPS")
+    timings.push("10.00 AM - 12.30 PM");
+    timings.push("3.00 PM - 4.00 PM");
+ }
+ if(n==4)
+ {
+  subjects.push("OOPS");
+    subjects.push("P&S")
+    timings.push("10.00 AM - 11.00 AM");
+    timings.push("11.30 AM - 12.30 PM"); 
+ }
+  if(n==5)
+  {
+    subjects.push("OOPS");
+    subjects.push("DAA");
+    timings.push("10.00 AM - 12.30 PM");
+    timings.push("4.30 PM - 5.30 PM");
+  }
+  if(n==6)
+{
+    subjects.push("DLD");
+    subjects.push("DAA");
+    subjects.push("MEFA");
+    timings.push("10.00 AM - 11.00 AM");
+    timings.push("11.30 AM - 12.30 PM");
+    timings.push("3.00 PM - 4.30 PM ");
+}
+for(var i in subjects)
+{
+  console.log(subjects[i]);
+  console.log(ids[i][0]);
+  document.getElementById(ids[i][0]).innerHTML=subjects[i];
+  document.getElementById(ids[i][1]).innerHTML=timings[i];
+}
+}
+if(strUser=="CSE-4"){
+   document.getElementById("sub3").innerHTML="";
+  document.getElementById("tim3").innerHTML="";
+   if(n==1){
+      subjects.push("P&S");
+    subjects.push("MEFA")
+    timings.push("10.00 AM - 12.30 PM");
+    timings.push("4.30 PM - 5.30 PM");
+   }
+   if(n==2) {
+      subjects.push("DLD");
+    subjects.push("DAA");
+    subjects.push("MEFA");
+    timings.push("10.00 AM - 12.30 PM");
+    timings.push("3.00 PM - 4.00 PM");
+    timings.push("4.30 PM - 5.30 PM")
+   }
+   if (n==3) {
+     subjects.push("OOPS");
+    subjects.push("P&S")
+    timings.push("10.00 AM - 12.30 PM");
+    timings.push("4.30 PM - 5.30 PM") 
+   }
+   if(n==4)
+   {
+     subjects.push("DAA");
+    subjects.push("P&S")
+    timings.push("10.00 AM - 12.30 PM");
+    timings.push("3.00 PM - 4.00 PM"); 
+   }
+   if(n==5)
+   {
+      subjects.push("DLD");
+    subjects.push("MEFA");
+    subjects.push("OOPS");
+    timings.push("10.00 AM - 11.00 AM");
+    timings.push("3.00 PM - 4.00 PM");
+    timings.push("4.30 PM - 5.30 PM")
+
+   }
+   if(n==6)
+   {
+     subjects.push("DAA");
+    subjects.push("OOPS")
+    timings.push("10.00 AM - 11.00 AM");
+    timings.push("11.00 AM - 12.30 PM");  
+   }
+}
+for(var i in subjects)
+{
+   console.log(subjects[i]);
+  document.getElementById(ids[i][0]).innerHTML =subjects[i];
+  document.getElementById(ids[i][1]).innerHTML=timings[i];
+}
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+</body>
+</html>
